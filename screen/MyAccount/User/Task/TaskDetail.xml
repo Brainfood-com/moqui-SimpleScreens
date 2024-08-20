@@ -18,8 +18,16 @@ along with this software (see the LICENSE.md file). If not, see
     <parameter name="workEffortId" required="true"/>
 
     <always-actions>
-        <entity-find entity-name="mantle.work.effort.WorkEffortParty" list="checkWepList">
-            <date-filter/><econdition field-name="workEffortId"/><econdition field-name="partyId" from="ec.user.userAccount.partyId"/></entity-find>
+        <entity-find entity-name="mantle.work.effort.WorkEffortPartyAsset" list="checkWepList">
+             <date-filter from-field-name="partyFromDate" thru-field-name="partyThruDate"/>
+             <date-filter from-field-name="teamMemberFromDate" thru-field-name="teamMemberThruDate"/>
+             <econdition field-name="workEffortId"/>
+             <econditions combine="or">
+                 <econdition field-name="ownerPartyId" from="ec.user.userAccount.partyId"/>
+                 <econdition field-name="partyId" from="ec.user.userAccount.partyId"/>
+                 <econdition field-name="teamMemberPartyId" from="ec.user.userAccount.partyId"/>
+             </econditions>
+        </entity-find>
         <if condition="!checkWepList"><return error="true" message="You are not a party to task ${workEffortId}"/></if>
     </always-actions>
 

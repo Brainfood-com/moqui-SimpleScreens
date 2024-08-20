@@ -379,12 +379,6 @@ along with this software (see the LICENSE.md file). If not, see
                         <depends-on field="rootWorkEffortId"/></dynamic-options>
                 </drop-down>
             </header-field></field>
-            <field name="teamPartyId"><header-field title="Assigned To Team">
-                <drop-down allow-empty="true">
-                    <dynamic-options transition="getProjectTeams" value-field="partyId" label-field="name">
-                        <depends-on field="rootWorkEffortId"/></dynamic-options>
-                </drop-down>
-            </header-field></field>
             <field name="assigned"><default-field>
                 <section-iterate name="AssignedSection" list="weapdList" entry="weapd"><widgets>
                     <label text="${weapd.firstName?:''} ${weapd.lastName?:''} ${weapd.organizationName?:''}" type="div"/>
